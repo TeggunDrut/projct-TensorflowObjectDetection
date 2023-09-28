@@ -28,17 +28,13 @@ try:
             break
 
         # Check if it's time to capture a new image
-        current_time = time.time()
-        if current_time - last_capture_time >= interval_ms / 1000:
+        if cv2.waitKey(1) & 0xFF == ord(' '):
             # Save the captured frame as an image
             timestamp = int(time.time())
             image_filename = f"REAL/NewImages/face_{imgNum}.jpg"
             cv2.imwrite(image_filename, frame)
             print(f"Captured {image_filename}")
 
-            # Update the last capture time
-            last_capture_time = current_time
-            
             imgNum += 1
 
         # Display the frame (optional)
